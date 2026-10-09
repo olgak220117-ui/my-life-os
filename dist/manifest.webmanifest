@@ -1,0 +1,13 @@
+{
+  "name": "My Life OS",
+  "short_name": "Life OS",
+  "description": "A calm, private home for your habits, learning, fitness, and progress.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#f2f2f5",
+  "theme_color": "#f2f2f5",
+  "orientation": "portrait-primary",
+  "icons": [
+    { "src": "/icons/icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any maskable" }
+  ]
+}

@@ -1,0 +1,236 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#f5f5f7" />
+    <meta name="description" content="My Life OS — a calm, private home for your habits, learning, fitness, and progress." />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <link rel="manifest" href="/manifest.webmanifest" />
+    <link rel="icon" href="/icons/icon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="/icons/icon.svg" />
+    <link rel="stylesheet" href="/styles.css" />
+    <title>My Life OS</title>
+  </head>
+  <body>
+    <div class="ambient ambient-a"></div>
+    <div class="ambient ambient-b"></div>
+
+    <div class="app-shell">
+      <aside class="sidebar glass" aria-label="Primary navigation">
+        <a class="brand" href="#today" data-nav="today" aria-label="My Life OS home">
+          <span class="brand-mark"><span></span><span></span><span></span></span>
+          <span><strong>My Life</strong><small>Operating System</small></span>
+        </a>
+
+        <nav class="nav-list">
+          <button class="nav-item active" data-screen="today"><span class="nav-icon">⌂</span><span>Today</span></button>
+          <button class="nav-item" data-screen="thai"><span class="nav-icon">ก</span><span>Thai Learning</span></button>
+          <button class="nav-item" data-screen="ai"><span class="nav-icon">✦</span><span>AI Learning</span></button>
+          <button class="nav-item" data-screen="fitness"><span class="nav-icon">↗</span><span>Fitness</span></button>
+          <button class="nav-item" data-screen="progress"><span class="nav-icon">◒</span><span>Progress</span></button>
+        </nav>
+
+        <div class="sidebar-footer">
+          <button class="nav-item" id="addCategoryBtn"><span class="nav-icon">＋</span><span>New category</span></button>
+          <button class="nav-item" id="settingsBtn"><span class="nav-icon">⚙</span><span>Preferences</span></button>
+          <div class="privacy-note"><span class="status-dot"></span><span>Saved on this device</span></div>
+        </div>
+      </aside>
+
+      <main class="main">
+        <header class="topbar">
+          <div>
+            <p class="eyebrow" id="dateEyebrow"></p>
+            <h1 id="pageTitle">Today</h1>
+          </div>
+          <div class="top-actions">
+            <button class="icon-btn" id="themeBtn" aria-label="Toggle appearance" title="Toggle appearance">◐</button>
+            <button class="avatar" id="profileBtn" aria-label="Open profile"><span>ME</span></button>
+          </div>
+        </header>
+
+        <section class="screen active" id="screen-today" aria-labelledby="pageTitle">
+          <div class="hero-grid">
+            <article class="hero-card glass-card">
+              <div class="hero-copy">
+                <p class="eyebrow">Your day, in focus</p>
+                <h2 id="greeting">Good morning.</h2>
+                <p id="heroSummary">A fresh day is ready when you are.</p>
+                <button class="primary-btn" data-jump="thai">Start a focus session <span>→</span></button>
+              </div>
+              <div class="progress-orb" id="dailyOrb" style="--progress: 0">
+                <div><strong id="dailyPercent">0%</strong><span>complete</span></div>
+              </div>
+            </article>
+
+            <article class="mini-stat glass-card">
+              <div class="stat-icon coral">↗</div>
+              <div><span>This week</span><strong id="weekCompleted">0</strong><small>actions completed</small></div>
+              <div class="spark-bars" id="weekSpark" aria-label="Weekly activity"></div>
+            </article>
+          </div>
+
+          <div class="section-heading">
+            <div><p class="eyebrow">Rhythm</p><h2>This week</h2></div>
+            <button class="text-btn" id="calendarTodayBtn">Jump to today</button>
+          </div>
+          <div class="week-strip glass-card" id="weekCalendar" aria-label="Interactive weekly calendar"></div>
+
+          <div class="section-heading">
+            <div><p class="eyebrow">Daily essentials</p><h2>Your habits</h2></div>
+            <button class="text-btn" id="addHabitBtn">＋ Add habit</button>
+          </div>
+          <div class="habit-grid" id="habitGrid"></div>
+
+          <div class="today-bottom-grid">
+            <article class="glass-card focus-plan">
+              <div class="card-top"><div><p class="eyebrow">Next up</p><h3>Learning plan</h3></div><span class="pill">Flexible</span></div>
+              <div class="plan-row" data-jump="thai"><span class="plan-symbol thai">ก</span><div><strong>Thai practice</strong><small id="thaiPlanLabel">15 min daily goal</small></div><span>›</span></div>
+              <div class="plan-row" data-jump="ai"><span class="plan-symbol ai">✦</span><div><strong>AI learning</strong><small id="aiPlanLabel">45 min daily goal</small></div><span>›</span></div>
+            </article>
+            <article class="glass-card quote-card">
+              <span class="quote-mark">“</span>
+              <blockquote>Small systems, repeated with care, become a remarkable life.</blockquote>
+              <p>Today’s intention</p>
+              <input id="intentionInput" class="line-input" placeholder="Write one clear intention…" maxlength="90" />
+            </article>
+          </div>
+        </section>
+
+        <section class="screen" id="screen-thai">
+          <div class="learning-hero thai-gradient">
+            <div><span class="hero-kicker">ภาษาไทย • Daily practice</span><h2>A little Thai,<br/>every day.</h2><p>Build fluency through calm, focused sessions.</p><button class="light-btn" id="startThaiBtn">Begin session</button></div>
+            <div class="goal-dial"><div><strong id="thaiTodayMinutes">0</strong><span id="thaiGoalDialLabel">of 15 min</span></div></div>
+          </div>
+
+          <div class="metrics-row">
+            <article class="metric glass-card"><span>Current streak</span><strong id="thaiStreak">0 <small>days</small></strong><p>No sessions yet</p></article>
+            <article class="metric glass-card"><span>Words collected</span><strong id="vocabCount">0</strong><p>Your personal library</p></article>
+            <article class="metric glass-card"><span>Time this week</span><strong id="thaiWeekMinutes">0 <small>min</small></strong><p>Real sessions only</p></article>
+          </div>
+
+          <div class="content-grid two-one">
+            <article class="glass-card panel">
+              <div class="card-top"><div><p class="eyebrow">Vocabulary</p><h3>Your word collection</h3></div><button class="round-add" id="addVocabBtn" aria-label="Add word">＋</button></div>
+              <div id="vocabList" class="vocab-list"></div>
+            </article>
+            <article class="glass-card panel">
+              <div class="card-top"><div><p class="eyebrow">History</p><h3>Recent study</h3></div></div>
+              <div id="thaiHistory" class="history-list"></div>
+            </article>
+          </div>
+        </section>
+
+        <section class="screen" id="screen-ai">
+          <div class="learning-hero ai-gradient">
+            <div><span class="hero-kicker">Continuous learning</span><h2>Expand what<br/>you can build.</h2><p>Focused sessions for durable understanding.</p><button class="light-btn" id="startAiBtn">Start learning</button></div>
+            <div class="goal-dial"><div><strong id="aiTodayMinutes">0</strong><span id="aiGoalDialLabel">of 45 min</span></div></div>
+          </div>
+
+          <div class="section-heading"><div><p class="eyebrow">Curriculum</p><h2>Learning topics</h2></div><button class="text-btn" id="addTopicBtn">＋ Add topic</button></div>
+          <div class="topic-grid" id="topicGrid"></div>
+
+          <div class="content-grid one-one">
+            <article class="glass-card panel">
+              <div class="card-top"><div><p class="eyebrow">Capture</p><h3>Quick note</h3></div><button class="primary-btn compact" id="saveNoteBtn">Save note</button></div>
+              <select id="noteTopicSelect" class="field"></select>
+              <textarea id="noteInput" class="field note-area" placeholder="A key idea, useful prompt, or question to revisit…"></textarea>
+            </article>
+            <article class="glass-card panel">
+              <div class="card-top"><div><p class="eyebrow">Notes</p><h3>Recent insights</h3></div></div>
+              <div id="notesList" class="notes-list"></div>
+            </article>
+          </div>
+        </section>
+
+        <section class="screen" id="screen-fitness">
+          <div class="fitness-head">
+            <div><p class="eyebrow">Move with purpose</p><h2>Stronger, session<br/>by session.</h2><p>Plan clearly. Track honestly. Progress naturally.</p></div>
+            <button class="primary-btn dark" id="startWorkoutBtn">Start workout <span>→</span></button>
+          </div>
+
+          <div class="metrics-row">
+            <article class="metric glass-card"><span>Weekly target</span><strong id="workoutGoalMetric">3 <small>sessions</small></strong><p id="workoutWeekProgress">0 completed</p></article>
+            <article class="metric glass-card"><span>Personal records</span><strong id="prCount">0</strong><p>Calculated from logged sets</p></article>
+            <article class="metric glass-card"><span>Total workouts</span><strong id="workoutTotal">0</strong><p>All-time, on this device</p></article>
+          </div>
+
+          <div class="content-grid two-one">
+            <article class="glass-card panel">
+              <div class="card-top"><div><p class="eyebrow">Your plan</p><h3>Workout exercises</h3></div><button class="round-add" id="addExerciseBtn">＋</button></div>
+              <div id="exerciseList" class="exercise-list"></div>
+            </article>
+            <article class="glass-card panel">
+              <div class="card-top"><div><p class="eyebrow">History</p><h3>Completed workouts</h3></div></div>
+              <div id="workoutHistory" class="history-list"></div>
+            </article>
+          </div>
+        </section>
+
+        <section class="screen" id="screen-progress">
+          <div class="progress-header">
+            <div><p class="eyebrow">Your patterns</p><h2>Progress, honestly measured.</h2><p>Only activity you record appears here.</p></div>
+            <div class="segmented" id="periodToggle"><button class="active" data-period="week">Week</button><button data-period="month">Month</button></div>
+          </div>
+
+          <div class="metrics-row progress-metrics">
+            <article class="metric glass-card"><span>Consistency</span><strong id="consistencyMetric">—</strong><p>Days with any activity</p></article>
+            <article class="metric glass-card"><span>Focused time</span><strong id="focusTimeMetric">0 <small>min</small></strong><p>Thai + AI learning</p></article>
+            <article class="metric glass-card"><span>Completed actions</span><strong id="actionsMetric">0</strong><p>Habits and workouts</p></article>
+          </div>
+
+          <div class="content-grid two-one">
+            <article class="glass-card panel chart-panel">
+              <div class="card-top"><div><p class="eyebrow">Activity</p><h3>Consistency over time</h3></div><div class="chart-legend"><i></i><span>Completed actions</span></div></div>
+              <div id="activityChart" class="activity-chart"></div>
+            </article>
+            <article class="glass-card panel">
+              <div class="card-top"><div><p class="eyebrow">Balance</p><h3>Life areas</h3></div></div>
+              <div id="balanceChart" class="balance-chart"></div>
+            </article>
+          </div>
+
+          <article class="glass-card panel">
+            <div class="card-top"><div><p class="eyebrow">Reflection</p><h3>Your period summary</h3></div></div>
+            <div id="progressInsight" class="insight-empty"></div>
+          </article>
+        </section>
+      </main>
+
+      <nav class="mobile-nav glass" aria-label="Mobile navigation">
+        <button class="active" data-screen="today"><span>⌂</span><small>Today</small></button>
+        <button data-screen="thai"><span>ก</span><small>Thai</small></button>
+        <button data-screen="ai"><span>✦</span><small>AI</small></button>
+        <button data-screen="fitness"><span>↗</span><small>Fitness</small></button>
+        <button data-screen="progress"><span>◒</span><small>Progress</small></button>
+      </nav>
+    </div>
+
+    <div class="modal-backdrop" id="modalBackdrop" hidden>
+      <div class="modal glass-card" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+        <button class="modal-close" id="modalClose" aria-label="Close">×</button>
+        <div id="modalContent"></div>
+      </div>
+    </div>
+
+    <div class="timer-overlay" id="timerOverlay" hidden>
+      <div class="timer-card glass-card">
+        <button class="modal-close" id="timerClose" aria-label="Close">×</button>
+        <p class="eyebrow" id="timerKind">Focused session</p>
+        <h2 id="timerTitle">Thai Learning</h2>
+        <div class="timer-ring" id="timerRing" style="--timer-progress:0"><span id="timerDisplay">15:00</span></div>
+        <p class="timer-status" id="timerStatus">Ready when you are.</p>
+        <div class="timer-actions">
+          <button class="secondary-btn" id="timerReset">Reset</button>
+          <button class="primary-btn" id="timerToggle">Start</button>
+          <button class="secondary-btn" id="timerFinish">Finish</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+    <script src="/app.js" defer></script>
+  </body>
+</html>
